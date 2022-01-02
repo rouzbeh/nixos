@@ -56,5 +56,6 @@ in
   environment.systemPackages = with pkgs; [
     emacs-nox
     nixpkgs-fmt
+    nodejs-14_x
   ];
 }
