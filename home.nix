@@ -21,5 +21,18 @@
   ];
 
   services.vscode-server.enable = true;
+
+  programs.ssh = {
+    enable = true;
+    compression = true;
+    matchBlocks = {
+      "github" =
+        {
+          hostname = "github.com";
+          user = "git";
+        };
+
+    };
+  };
 }
 
