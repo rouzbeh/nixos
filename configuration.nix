@@ -12,11 +12,11 @@ in
 
   nix = {
     package = pkgs.nixUnstable; # or versioned attributes like nix_2_4
-    autoOptimiseStore = true; 
-   extraOptions = ''
+    autoOptimiseStore = true;
+    extraOptions = ''
       experimental-features = nix-command flakes
     '';
-   };
+  };
 
   # WSL is closer to a container than anything else
   boot.isContainer = true;
@@ -53,7 +53,7 @@ in
   systemd.enableEmergencyMode = false;
 
   environment.systemPackages = with pkgs; [
-  emacs-nox
-  nixpkgs-fmt
-];
+    emacs-nox
+    nixpkgs-fmt
+  ];
 }
