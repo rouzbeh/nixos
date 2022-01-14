@@ -15,12 +15,26 @@
     nixosConfigurations."sf2wsl" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration.nix
+        ./wsl/configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.nixos = import ./common/home.nix;
+        }
+      ];
+    };
+
+
+    nixosConfigurations."vps-c2eff6bc" = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./ovh/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.rouzbeh = import ./ovh/home.nix;
         }
       ];
     };
