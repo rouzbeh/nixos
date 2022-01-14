@@ -39,6 +39,18 @@
       ];
     };
 
+    nixosConfigurations."vm" = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      modules = [
+        ./vm/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.rouzbeh = import ./actigraph/home.nix;
+        }
+      ];
+    };
     # You can define many systems in one Flake file.
     # NixOS will choose one based on your hostname.
     #
