@@ -1,26 +1,10 @@
 { pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
-    
+    ./common/configuration.nix
   ];
 
-  nix = {
-    package = pkgs.nixUnstable; # or versioned attributes like nix_2_4
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-   };  
-
-  system.autoUpgrade.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    python310
-  ];
-  boot.cleanTmpDir = true;
-  networking.hostName = "vps-c2eff6bc";
-  networking.firewall.allowPing = true;
   services.openssh.enable = true;
-  services.openssh.permitRootLogin = "no";
   services.openssh.passwordAuthentication = false;
 
   users.users.rouzbeh = {
@@ -29,7 +13,7 @@
     description = "Ali";
     extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKJmsbjo48XbCi8lLWxmebX/8By15nxTV5xXS4+ODU08 SurfaceBook2" ]; 
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKJmsbjo48XbCi8lLWxmebX/8By15nxTV5xXS4+ODU08 SurfaceBook2" ];
   };
 
   services.fail2ban.enable = true;
@@ -54,16 +38,16 @@
       # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
       # For this to work you have to set the dnsserver IP of your router (or dnsserver of choice) in your clients
       postSetup = [
-	"${pkgs.iptables}/bin/iptables -A FORWARD -i %i -j ACCEPT"
-	"${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE"
-	"${pkgs.iptables}/bin/iptables -A FORWARD -o %i -j ACCEPT"
+        "${pkgs.iptables}/bin/iptables -A FORWARD -i %i -j ACCEPT"
+        "${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE"
+        "${pkgs.iptables}/bin/iptables -A FORWARD -o %i -j ACCEPT"
       ];
 
       # This undoes the above command
       postShutdown = [
-	"${pkgs.iptables}/bin/iptables -D FORWARD -i %i -j ACCEPT"
-	"${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE"
-	"${pkgs.iptables}/bin/iptables -D FORWARD -o %i -j ACCEPT"
+        "${pkgs.iptables}/bin/iptables -D FORWARD -i %i -j ACCEPT"
+        "${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE"
+        "${pkgs.iptables}/bin/iptables -D FORWARD -o %i -j ACCEPT"
       ];
 
       # Path to the private key file.
@@ -75,26 +59,31 @@
 
       peers = [
         # List of allowed peers.
-	{ # Ali
-	publicKey = "mxHtvEtEs9seVNPIy48yXrrDAx7FZnqNYOcaLb1XNCs=";
-	allowedIPs = ["10.0.0.2/32"];
-	}
-	{# Pedro
-	publicKey = "YUnY6U6wP+U6o+7BpVvahOiJD7AH4HgfveQ0Rx9a03w=";
-	allowedIPs = ["10.0.0.3/32"];
-	}
-	{# Anastasia
-	publicKey = "POl6eZdIevWBd7iY1mfzpCaLxkNI3cnbFBQyroI5hFs=";
-	allowedIPs = ["10.0.0.4/32"];
-	}
-	{# Will
-	publicKey = "pcldPJfHUqk1YfPXwtUXXZq5opVjE/lxoGiXMX5/9Qk=";
-	allowedIPs = ["10.0.0.5/32"];
-	}
-	{# iPhone
-	publicKey = "m29b2Nuta2LAe0HjvRgxR6lWCAJURmsVKmpGmkUOiX0=";
-	allowedIPs = ["10.0.0.6/32"];
-	}
+        {
+          # Ali
+          publicKey = "mxHtvEtEs9seVNPIy48yXrrDAx7FZnqNYOcaLb1XNCs=";
+          allowedIPs = [ "10.0.0.2/32" ];
+        }
+        {
+          # Pedro
+          publicKey = "YUnY6U6wP+U6o+7BpVvahOiJD7AH4HgfveQ0Rx9a03w=";
+          allowedIPs = [ "10.0.0.3/32" ];
+        }
+        {
+          # Anastasia
+          publicKey = "POl6eZdIevWBd7iY1mfzpCaLxkNI3cnbFBQyroI5hFs=";
+          allowedIPs = [ "10.0.0.4/32" ];
+        }
+        {
+          # Will
+          publicKey = "pcldPJfHUqk1YfPXwtUXXZq5opVjE/lxoGiXMX5/9Qk=";
+          allowedIPs = [ "10.0.0.5/32" ];
+        }
+        {
+          # iPhone
+          publicKey = "m29b2Nuta2LAe0HjvRgxR6lWCAJURmsVKmpGmkUOiX0=";
+          allowedIPs = [ "10.0.0.6/32" ];
+        }
       ];
     };
   };
