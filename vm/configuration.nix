@@ -4,9 +4,39 @@
     ../common/configuration.nix
   ];
 
-  services.openssh.enable = true;
-  services.openssh.passwordAuthentication = true;
+  nixpkgs.overlays = [(self: super: {
+    alacritty = super.alacritty.overrideAttrs (
+      o: rec {
+        doCheck = false;
+      }
+      );
+    })
+  ];
 
+  # environment.pathsToLink = [ "/libexec" ];
+  environment.systemPackages = with pkgs; [
+    i3
+    alacritty
+  ];
+
+  services.openssh.enable = true;
+  services.openssh.passwordAuthentication = false;
+
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraPackages = with pkgs; [
+      i3status
+      swayidle
+      swaylock
+      wl-clipboard
+      mako
+      wofi
+      xterm
+    ];
+  };
+
+  services.spice-vdagentd.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
