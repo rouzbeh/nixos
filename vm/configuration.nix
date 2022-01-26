@@ -19,6 +19,7 @@
     alacritty
   ];
 
+  virtualisation.docker.enable = true;
   services.openssh.enable = true;
   services.openssh.passwordAuthentication = false;
 
@@ -48,7 +49,7 @@
     isNormalUser = true;
     home = "/home/rouzbeh";
     description = "Ali";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "docker"];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIfTIso0wIp92pUNoBfpCbqnpx8B68GwHusZRE9GRQk ali.neishabouri@theactigraph.com" ];
   };
