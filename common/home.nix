@@ -1,7 +1,14 @@
 { config, pkgs, ... }:
 {
 
-  home.packages = [ pkgs.nixpkgs-fmt pkgs.graphviz pkgs.htop pkgs.nix ];
+  home.packages = [
+    pkgs.nixpkgs-fmt
+    pkgs.graphviz
+    pkgs.htop
+    pkgs.python310
+    pkgs.python310.pkgs.pip
+    (pkgs.texlive.combine { inherit (pkgs.texlive) scheme-medium lastpage latexindent; })
+  ];
 
   /* Here goes your home-manager config, eg home.packages = [ pkgs.foo ]; */
   programs.git = {

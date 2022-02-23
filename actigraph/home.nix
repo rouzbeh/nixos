@@ -4,6 +4,7 @@
 
   programs.git = {
     userEmail = "ali.neishabouri@theactigraph.com";
+    lfs.enable = true;
   };
 
   programs.zsh.initExtra = ''
