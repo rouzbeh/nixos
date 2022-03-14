@@ -17,6 +17,7 @@
   environment.systemPackages = with pkgs; [
     i3
     alacritty
+    emacs
   ];
 
   virtualisation.docker.enable = true;
