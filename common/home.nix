@@ -5,6 +5,7 @@
     pkgs.nixpkgs-fmt
     pkgs.graphviz
     pkgs.htop
+    pkgs.gh
     pkgs.python310
     pkgs.python310.pkgs.pip
     (pkgs.texlive.combine { inherit (pkgs.texlive) scheme-medium lastpage latexindent; })
