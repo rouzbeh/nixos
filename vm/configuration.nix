@@ -7,6 +7,7 @@
   # environment.pathsToLink = [ "/libexec" ];
   environment.systemPackages = with pkgs; [
     emacs
+    tmux
   ];
 
   virtualisation.docker.enable = true;
@@ -23,7 +24,7 @@
     isNormalUser = true;
     home = "/home/rouzbeh";
     description = "Ali";
-    extraGroups = [ "wheel" "networkmanager" "docker"];
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIfTIso0wIp92pUNoBfpCbqnpx8B68GwHusZRE9GRQk ali.neishabouri@theactigraph.com" ];
   };
@@ -32,5 +33,5 @@
   # max(1GB, sqrt(RAM)) = 1024. If you want to use hibernation with
   # this device, then it's recommended that you use
   # RAM + max(1GB, sqrt(RAM)) = 4931.000.
-  swapDevices = [ { device = "/swapfile"; size = 1024; } ];
+  swapDevices = [{ device = "/swapfile"; size = 1024; }];
 }
