@@ -6,6 +6,7 @@
 
   services.openssh.enable = true;
   services.openssh.passwordAuthentication = false;
+  networking.hostName = "vps-c2eff6bc";
 
   users.users.rouzbeh = {
     isNormalUser = true;
