@@ -8,6 +8,11 @@
   };
 
   programs.zsh.initExtra = ''
+    # Nix
+    if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+      . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    fi
+    # End Nix
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/Users/ali.neishabouri/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -41,6 +46,12 @@
       {
         user = "azureuser";
         identityFile = "~/.ssh/id_azure";
+      };
+    "vm" =
+      {
+        hostname = "192.168.64.2";
+        user = "rouzbeh";
+        identityFile = "~/.ssh/id_ed25519";
       };
   };
 }
