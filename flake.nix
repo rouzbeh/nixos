@@ -20,7 +20,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.nixos = import ./common/home.nix;
+          home-manager.users.rouzbeh = import ./wsl/home.nix;
         }
       ];
     };
