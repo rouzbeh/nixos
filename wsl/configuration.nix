@@ -2,7 +2,7 @@
 
 with lib;
 let
-  defaultUser = "nixos";
+  defaultUser = "rouzbeh";
   syschdemd = import ./syschdemd.nix { inherit lib pkgs config defaultUser; };
 in
 {
@@ -12,7 +12,6 @@ in
 
   nix = {
     package = pkgs.nixUnstable; # or versioned attributes like nix_2_4
-    autoOptimiseStore = true;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
