@@ -12,7 +12,7 @@
   # Output config, or config for NixOS system
   outputs = { self, home-manager, nixpkgs, ... }@inputs: {
     # Define a system called "nixos"
-    nixosConfigurations."sf2wsl" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations."DESKTOP-F0AFNHC" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./wsl/configuration.nix

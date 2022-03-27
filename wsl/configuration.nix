@@ -23,7 +23,7 @@ in
   environment.etc.hosts.enable = false;
   environment.etc."resolv.conf".enable = false;
 
-  networking.hostName = "sf2wsl";
+  networking.hostName = "DESKTOP-F0AFNHC";
   networking.dhcpcd.enable = false;
 
   users.users.${defaultUser} = {
