@@ -2,6 +2,8 @@
 {
 
   home.packages = [
+    pkgs.unzip
+    pkgs.p7zip
     pkgs.nixpkgs-fmt
     pkgs.graphviz
     pkgs.htop
@@ -35,7 +37,7 @@
     enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = [ "git" "vi-mode" ];
       theme = "robbyrussell";
     };
     initExtraBeforeCompInit = ''

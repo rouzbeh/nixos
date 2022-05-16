@@ -2,6 +2,13 @@
 {
   imports = [ ../common/home.nix ];
 
+  home.packages = [
+  ];
+
+  home.sessionVariables = {
+    BUILD_PREFIX="/tmp";
+  };
+
   programs.git = {
     userEmail = "ali.neishabouri@theactigraph.com";
     lfs.enable = true;
@@ -27,6 +34,8 @@
     fi
     unset __conda_setup
     # <<< conda initialize <<<
+
+    eval "$(/opt/homebrew/bin/brew shellenv)"
   '';
 
   programs.ssh.matchBlocks = {
