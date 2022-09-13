@@ -10,7 +10,7 @@
     pkgs.gh
     pkgs.python310
     pkgs.python310.pkgs.pip
-    (pkgs.texlive.combine { inherit (pkgs.texlive) scheme-medium lastpage latexindent; })
+    (pkgs.texlive.combine { inherit (pkgs.texlive) scheme-medium lastpage latexindent beamer wrapfig capt-of; })
   ];
 
   /* Here goes your home-manager config, eg home.packages = [ pkgs.foo ]; */

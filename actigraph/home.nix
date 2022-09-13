@@ -2,7 +2,9 @@
 {
   imports = [ ../common/home.nix ];
 
-  home.packages = [
+  home.packages = 
+  let my-R = pkgs.rWrapper.override{ packages = with pkgs.rPackages; [ ggplot2 GGIR ]; };
+  in [
   ];
 
   home.sessionVariables = {
@@ -14,7 +16,14 @@
     lfs.enable = true;
   };
 
-  programs.zsh.initExtra = ''
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      brew = "~/.local/homebrew/bin/brew";
+      pyw = "cd ~/workspace/pywear && conda activate pywear";
+    };
+
+    initExtra = ''
     # Nix
     if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
       . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
@@ -34,9 +43,8 @@
     fi
     unset __conda_setup
     # <<< conda initialize <<<
-
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  '';
+    '';
+  };
 
   programs.ssh.matchBlocks = {
     "github" =
