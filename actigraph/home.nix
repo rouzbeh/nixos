@@ -20,6 +20,7 @@
     enable = true;
     shellAliases = {
       brew = "~/.local/homebrew/bin/brew";
+      az = "~/.local/homebrew/bin/az";
       pyw = "cd ~/workspace/pywear && conda activate pywear";
     };
 

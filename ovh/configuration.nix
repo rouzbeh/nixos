@@ -14,7 +14,8 @@
     description = "Ali";
     extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKJmsbjo48XbCi8lLWxmebX/8By15nxTV5xXS4+ODU08 SurfaceBook2" ];
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKJmsbjo48XbCi8lLWxmebX/8By15nxTV5xXS4+ODU08 SurfaceBook2" 
+                                    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIfTIso0wIp92pUNoBfpCbqnpx8B68GwHusZRE9GRQk ali.neishabouri@theactigraph.com"];
   };
 
   services.fail2ban.enable = true;
