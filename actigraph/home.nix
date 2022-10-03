@@ -60,8 +60,15 @@
         user = "actigraph";
         identityFile = "~/.ssh/id_azure";
       };
-    "*azure.com" =
+    "dss" =
       {
+        hostname = "dssactgraph.westeurope.cloudapp.azure.com";
+        user = "azureuser";
+        identityFile = "~/.ssh/id_azure";
+      };
+    "processor" =
+      {
+        hostname = "20.85.211.30";
         user = "azureuser";
         identityFile = "~/.ssh/id_azure";
       };
