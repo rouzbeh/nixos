@@ -20,12 +20,21 @@
 
   services.fail2ban.enable = true;
 
+  services.dnsmasq = {
+      enable = true;
+      extraConfig = ''
+        interface=wg0
+      '';
+    };
+
   # enable NAT
   networking.nat.enable = true;
+  networking.nat.enableIPv6 = true;
   networking.nat.externalInterface = "ens3";
   networking.nat.internalInterfaces = [ "wg0" ];
   networking.firewall = {
-    allowedUDPPorts = [ 51820 ];
+    allowedUDPPorts = [ 51820 53 ];
+    allowedTCPPorts = [ 53 ];
   };
 
   networking.wireguard.interfaces = {
@@ -85,6 +94,11 @@
           # iPhone
           publicKey = "m29b2Nuta2LAe0HjvRgxR6lWCAJURmsVKmpGmkUOiX0=";
           allowedIPs = [ "10.0.0.6/32" ];
+        }
+        {
+          # Alireza
+          publicKey = "Rym5loWDOphxu6nRduUqbrTNdlITvESf3f+tL+SfQCY=";
+          allowedIPs = [ "10.0.0.7/32" ];
         }
       ];
     };

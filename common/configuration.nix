@@ -16,6 +16,7 @@
 
   environment.systemPackages = with pkgs; [
     python310
+    dig
   ];
   boot.cleanTmpDir = true;
   services.openssh.permitRootLogin = "no";
