@@ -8,11 +8,13 @@
   services.openssh.passwordAuthentication = false;
   networking.hostName = "vps-c2eff6bc";
 
+  virtualisation.docker.enable = true;
+
   users.users.rouzbeh = {
     isNormalUser = true;
     home = "/home/rouzbeh";
     description = "Ali";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "docker"];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKJmsbjo48XbCi8lLWxmebX/8By15nxTV5xXS4+ODU08 SurfaceBook2" 
                                     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIfTIso0wIp92pUNoBfpCbqnpx8B68GwHusZRE9GRQk ali.neishabouri@theactigraph.com"];
@@ -33,8 +35,8 @@
   networking.nat.externalInterface = "ens3";
   networking.nat.internalInterfaces = [ "wg0" ];
   networking.firewall = {
-    allowedUDPPorts = [ 51820 53 ];
-    allowedTCPPorts = [ 53 ];
+    allowedUDPPorts = [ 51820 53 6042];
+    allowedTCPPorts = [ 53 6042 39967];
   };
 
   networking.wireguard.interfaces = {

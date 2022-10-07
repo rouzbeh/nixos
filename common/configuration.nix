@@ -1,7 +1,7 @@
 { pkgs, ... }: {
 
   nix = {
-    package = pkgs.nixUnstable; # or versioned attributes like nix_2_4
+    package = pkgs.nix_2_6;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -17,6 +17,8 @@
   environment.systemPackages = with pkgs; [
     python310
     dig
+    wget
+    openssl
   ];
   boot.cleanTmpDir = true;
   services.openssh.permitRootLogin = "no";
