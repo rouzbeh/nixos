@@ -14,5 +14,20 @@
         identityFile = "~/.ssh/id_ed25519";
       };
   };
+
+  programs.vim = {
+    packageConfigurable = (
+      (pkgs.vim_configurable.override {
+        python = pkgs.python3;
+        guiSupport = false;
+      })
+    );
+    enable = true;
+    plugins = with pkgs.vimPlugins; [ vim-airline vim-nix ];
+    settings = { ignorecase = true; };
+    extraConfig = ''
+    '';
+  };
+
 }
 

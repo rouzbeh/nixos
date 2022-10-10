@@ -5,22 +5,22 @@
   # Input config, or package repos
   inputs = {
     # Nixpkgs, NixOS's official repo
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
     home-manager.url = "github:nix-community/home-manager";
   };
 
   # Output config, or config for NixOS system
   outputs = { self, home-manager, nixpkgs, ... }@inputs: {
     # Define a system called "nixos"
-    nixosConfigurations."DESKTOP-F0AFNHC" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations."sf2" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./wsl/configuration.nix
+        ./sf2/configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.rouzbeh = import ./wsl/home.nix;
+          home-manager.users.man = import ./sf2/home.nix;
         }
       ];
     };

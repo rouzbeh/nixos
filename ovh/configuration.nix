@@ -4,6 +4,13 @@
     ../common/configuration.nix
   ];
 
+  imports = [
+    (fetchTarball { url = "https://github.com/msteen/nixos-vscode-server/tarball/master"; sha256 = "1qga1cmpavyw90xap5kfz8i6yz85b0blkkwvl00sbaxqcgib2rvv"; })
+  ];
+
+  services.vscode-server.enable = true;
+
+
   services.openssh.enable = true;
   services.openssh.passwordAuthentication = false;
   networking.hostName = "vps-c2eff6bc";

@@ -11,7 +11,7 @@
       {
         hostname = "github.com";
         user = "git";
-        identityFile = "~/.ssh/sf2";
+        identityFile = "~/.ssh/id_sf2";
       };
   };
 }

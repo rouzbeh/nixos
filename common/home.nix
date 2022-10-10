@@ -8,8 +8,6 @@
     pkgs.graphviz
     pkgs.htop
     pkgs.gh
-    pkgs.python310
-    pkgs.python310.pkgs.pip
     (pkgs.texlive.combine { inherit (pkgs.texlive) scheme-medium enumitem lastpage latexindent beamer wrapfig capt-of adjustbox titling collectbox upquote environ tcolorbox; })
   ];
 
@@ -17,20 +15,6 @@
   programs.git = {
     enable = true;
     userName = "Ali Neishabouri";
-  };
-
-  programs.vim = {
-    packageConfigurable = (
-      (pkgs.vim_configurable.override {
-        python = pkgs.python3;
-        guiSupport = false;
-      })
-    );
-    enable = true;
-    plugins = with pkgs.vimPlugins; [ vim-airline vim-nix ];
-    settings = { ignorecase = true; };
-    extraConfig = ''
-    '';
   };
 
   programs.zsh = {
