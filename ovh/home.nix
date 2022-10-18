@@ -18,7 +18,7 @@
   programs.vim = {
     packageConfigurable = (
       (pkgs.vim_configurable.override {
-        python = pkgs.python3;
+        python3 = pkgs.python3;
         guiSupport = false;
       })
     );
