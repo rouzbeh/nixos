@@ -8,10 +8,14 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../common/configuration.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
   hardware.opengl.enable = true;
+
+  #boot.kernelModules = [ "hid-multitouch" ]; 
+  #boot.initrd.kernelModules = [ "hid-multitouch" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -61,6 +65,7 @@
     isNormalUser = true;
     initialPassword="pw123";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
     packages = with pkgs; [
       emacs
       firefox

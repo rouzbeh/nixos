@@ -6,15 +6,17 @@
   inputs = {
     # Nixpkgs, NixOS's official repo
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
   };
 
   # Output config, or config for NixOS system
-  outputs = { self, home-manager, nixpkgs, ... }@inputs: {
+  outputs = { self, home-manager, nixpkgs, nixos-hardware, ... }@inputs: {
     # Define a system called "nixos"
     nixosConfigurations."sf2" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        nixos-hardware.nixosModules.microsoft-surface
         ./sf2/configuration.nix
         home-manager.nixosModules.home-manager
         {
