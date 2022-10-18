@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../common/configuration.nix
     ];
@@ -24,7 +25,7 @@
   networking.hostName = "sf2"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -63,37 +64,28 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.man = {
     isNormalUser = true;
-    initialPassword="pw123";
+    initialPassword = "pw123";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      emacs
-      firefox
-      git
-      neovim
-      bitwarden
-      python310 
-      vlc
-      wasabiwallet
-    ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
     cifs-utils
   ];
-  
+
   fileSystems."/home/man/chateau" = {
-      device = "//192.168.1.200/home";
-      fsType = "cifs";
-      options = let
+    device = "//192.168.1.200/home";
+    fsType = "cifs";
+    options =
+      let
         # this line prevents hanging on network split
         automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
-      in ["${automount_opts},vers=2.0,credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
+      in
+      [ "${automount_opts},vers=2.0,credentials=/etc/nixos/smb-secrets,uid=1000,gid=100" ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are

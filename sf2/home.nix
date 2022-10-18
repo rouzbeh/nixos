@@ -2,6 +2,16 @@
 {
   imports = [ ../common/home.nix ];
 
+  home.packages = with pkgs; [
+    wasabiwallet
+    bitwarden
+    neovim
+    firefox
+    emacs
+    git
+    vlc
+  ];
+
   programs.git = {
     userEmail = "ali@neishabouri.net";
   };
