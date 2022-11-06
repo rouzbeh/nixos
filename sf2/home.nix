@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 {
   imports = [ ../common/home.nix ];
+  home.sessionVariables = {
+    MOZ_USE_XINPUT2 = "1";
+  };
+
 
   home.packages = with pkgs; [
     wasabiwallet
