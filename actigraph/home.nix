@@ -10,6 +10,14 @@
 
   home.sessionVariables = {
     BUILD_PREFIX = "/tmp";
+    FC = "/Users/ali.neishabouri/.local/homebrew/bin/gfortran"; 
+    #CC = "/Users/ali.neishabouri/.local/homebrew/bin/gcc-12"; 
+    #CXX = "/Users/ali.neishabouri/.local/homebrew/bin/g++-12"; 
+    #PKG_CONFIG = "/Users/ali.neishabouri/.local/homebrew/bin/pkg-config";
+    #HDF5_DIR = "/Users/ali.neishabouri/.local/homebrew/opt/hdf5";
+    #BLOSC = "/Users/ali.neishabouri/.local/homebrew/opt/c-blosc";
+    #LDFLAGS = "-L/Users/ali.neishabouri/.local/homebrew/opt/libomp/lib";
+    #CPPFLAGS = "-I/Users/ali.neishabouri/.local/homebrew/opt/libomp/include";
   };
 
   programs.git = {
@@ -22,7 +30,13 @@
     shellAliases = {
       brew = "~/.local/homebrew/bin/brew";
       az = "~/.local/homebrew/bin/az";
-      pyw = "cd ~/workspace/pywear && conda activate pywear";
+      pyw = "cd ~/workspace/pywear && conda activate actihealth";
+      #poetry = "~/.local/homebrew/bin/poetry";
+      cpuinfo = "~/.local/homebrew/bin/cpuinfo";
+      #pip = "~/.local/homebrew/bin/pip";
+      #ninja = "~/.local/homebrew/bin/ninja";
+      #cmake = "~/.local/homebrew/bin/cmake";
+      #tar = "~/.local/homebrew/bin/gtar";
     };
 
     initExtra = ''
