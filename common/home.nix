@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
 
   home.packages = [
     pkgs.unzip
@@ -8,10 +7,14 @@
     pkgs.graphviz
     pkgs.htop
     pkgs.gh
-    (pkgs.texlive.combine { inherit (pkgs.texlive) scheme-medium enumitem lastpage latexindent beamer wrapfig capt-of adjustbox titling collectbox upquote environ tcolorbox; })
+    (pkgs.texlive.combine {
+      inherit (pkgs.texlive)
+        scheme-medium enumitem lastpage latexindent beamer wrapfig capt-of
+        adjustbox titling collectbox upquote environ tcolorbox;
+    })
   ];
 
-  /* Here goes your home-manager config, eg home.packages = [ pkgs.foo ]; */
+  # Here goes your home-manager config, eg home.packages = [ pkgs.foo ];
   programs.git = {
     enable = true;
     userName = "Ali Neishabouri";

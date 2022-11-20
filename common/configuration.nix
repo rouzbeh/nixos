@@ -4,11 +4,7 @@
 
   system.autoUpgrade.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    python310
-    dig
-    wget
-  ];
+  environment.systemPackages = with pkgs; [ python310 dig wget ];
   boot.cleanTmpDir = true;
   services.openssh.permitRootLogin = "no";
   # This value determines the NixOS release from which the default

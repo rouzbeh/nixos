@@ -11,14 +11,12 @@ let
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec "$@"
   '';
-in
-{
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../common/configuration.nix
-    ];
+in {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../common/configuration.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -35,7 +33,8 @@ in
   networking.hostName = "sf2"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable =
+    true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -56,8 +55,10 @@ in
   services.xserver.enable = true;
 
   # Configure keymap in X11
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
   services.xserver.layout = "fr";
   services.xserver.xkbOptions = "ctrl:swapcaps";
 
@@ -65,8 +66,8 @@ in
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -100,13 +101,14 @@ in
   fileSystems."/home/man/chateau" = {
     device = "//192.168.1.200/home";
     fsType = "cifs";
-    options =
-      let
-        # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+    options = let
+      # this line prevents hanging on network split
+      automount_opts =
+        "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
-      in
-      [ "${automount_opts},vers=2.0,credentials=/etc/nixos/smb-secrets,uid=1000,gid=100" ];
+    in [
+      "${automount_opts},vers=2.0,credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"
+    ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -118,10 +120,14 @@ in
   # };
 
   # List services that you want to enable:
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
   };
 
   # Enable the OpenSSH daemon.

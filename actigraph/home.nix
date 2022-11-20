@@ -1,16 +1,15 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   imports = [ ../common/home.nix ];
 
-  home.packages =
-    let my-R = pkgs.rWrapper.override { packages = with pkgs.rPackages; [ ggplot2 GGIR ]; };
-    in
-    [
-    ];
+  home.packages = let
+    my-R = pkgs.rWrapper.override {
+      packages = with pkgs.rPackages; [ ggplot2 GGIR ];
+    };
+  in [ ];
 
   home.sessionVariables = {
     BUILD_PREFIX = "/tmp";
-    FC = "/Users/ali.neishabouri/.local/homebrew/bin/gfortran"; 
+    FC = "/Users/ali.neishabouri/.local/homebrew/bin/gfortran";
     #CC = "/Users/ali.neishabouri/.local/homebrew/bin/gcc-12"; 
     #CXX = "/Users/ali.neishabouri/.local/homebrew/bin/g++-12"; 
     #PKG_CONFIG = "/Users/ali.neishabouri/.local/homebrew/bin/pkg-config";
@@ -63,48 +62,41 @@
   };
 
   programs.ssh.matchBlocks = {
-    "github" =
-      {
-        hostname = "github.com";
-        user = "git";
-        identityFile = "~/.ssh/id_ed25519";
-      };
-    "github_runner" =
-      {
-        hostname = "52.179.23.50";
-        user = "actigraph";
-        identityFile = "~/.ssh/id_azure";
-      };
-    "dss" =
-      {
-        hostname = "dssactgraph.westeurope.cloudapp.azure.com";
-        user = "azureuser";
-        identityFile = "~/.ssh/id_azure";
-      };
-    "processor" =
-      {
-        hostname = "20.85.211.30";
-        user = "azureuser";
-        identityFile = "~/.ssh/id_azure";
-      };
-    "vm" =
-      {
-        hostname = "192.168.64.2";
-        user = "rouzbeh";
-        identityFile = "~/.ssh/id_ed25519";
-      };
-    "ovh" =
-      {
-        hostname = "51.89.164.51";
-        user = "rouzbeh";
-        identityFile = "~/.ssh/id_ed25519";
-      };
-    "pi" =
-      {
-        hostname = "192.168.1.2";
-        user = "pi";
-        identityFile = "~/.ssh/id_ed25519";
-      };
+    "github" = {
+      hostname = "github.com";
+      user = "git";
+      identityFile = "~/.ssh/id_ed25519";
+    };
+    "github_runner" = {
+      hostname = "52.179.23.50";
+      user = "actigraph";
+      identityFile = "~/.ssh/id_azure";
+    };
+    "dss" = {
+      hostname = "dssactgraph.westeurope.cloudapp.azure.com";
+      user = "azureuser";
+      identityFile = "~/.ssh/id_azure";
+    };
+    "processor" = {
+      hostname = "20.85.211.30";
+      user = "azureuser";
+      identityFile = "~/.ssh/id_azure";
+    };
+    "vm" = {
+      hostname = "192.168.64.2";
+      user = "rouzbeh";
+      identityFile = "~/.ssh/id_ed25519";
+    };
+    "ovh" = {
+      hostname = "51.89.164.51";
+      user = "rouzbeh";
+      identityFile = "~/.ssh/id_ed25519";
+    };
+    "pi" = {
+      hostname = "192.168.1.2";
+      user = "pi";
+      identityFile = "~/.ssh/id_ed25519";
+    };
   };
 }
 
