@@ -1,6 +1,8 @@
 { config, pkgs, ... }: {
   imports = [ ../common/home.nix ];
 
+  home.username = "ali.neishabouri";
+  home.homeDirectory = "/Users/ali.neishabouri";
   home.packages = let
     my-R = pkgs.rWrapper.override {
       packages = with pkgs.rPackages; [ ggplot2 GGIR ];
@@ -12,11 +14,11 @@
     FC = "/Users/ali.neishabouri/.local/homebrew/bin/gfortran";
     #CC = "/Users/ali.neishabouri/.local/homebrew/bin/gcc-12"; 
     #CXX = "/Users/ali.neishabouri/.local/homebrew/bin/g++-12"; 
-    #PKG_CONFIG = "/Users/ali.neishabouri/.local/homebrew/bin/pkg-config";
-    #HDF5_DIR = "/Users/ali.neishabouri/.local/homebrew/opt/hdf5";
-    #BLOSC = "/Users/ali.neishabouri/.local/homebrew/opt/c-blosc";
-    #LDFLAGS = "-L/Users/ali.neishabouri/.local/homebrew/opt/libomp/lib";
-    #CPPFLAGS = "-I/Users/ali.neishabouri/.local/homebrew/opt/libomp/include";
+    PKG_CONFIG = "/Users/ali.neishabouri/.local/homebrew/bin/pkg-config";
+    HDF5_DIR = "/Users/ali.neishabouri/.local/homebrew/opt/hdf5";
+    BLOSC = "/Users/ali.neishabouri/.local/homebrew/opt/c-blosc";
+    LDFLAGS = "-L/Users/ali.neishabouri/.local/homebrew/opt/libomp/lib";
+    CPPFLAGS = "-I/Users/ali.neishabouri/.local/homebrew/opt/libomp/include";
   };
 
   programs.git = {
@@ -30,15 +32,14 @@
       brew = "~/.local/homebrew/bin/brew";
       az = "~/.local/homebrew/bin/az";
       pyw = "cd ~/workspace/pywear && conda activate actihealth";
-      #poetry = "~/.local/homebrew/bin/poetry";
       cpuinfo = "~/.local/homebrew/bin/cpuinfo";
-      #pip = "~/.local/homebrew/bin/pip";
       #ninja = "~/.local/homebrew/bin/ninja";
       #cmake = "~/.local/homebrew/bin/cmake";
       #tar = "~/.local/homebrew/bin/gtar";
     };
 
     initExtra = ''
+      export PATH="/Users/ali.neishabouri/.local/homebrew/bin":$PATH
       # Nix
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
@@ -99,4 +100,5 @@
     };
   };
 }
+
 

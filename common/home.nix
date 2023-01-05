@@ -1,5 +1,5 @@
 { config, pkgs, ... }: {
-
+  home.stateVersion = "22.05";
   home.packages = [
     pkgs.unzip
     pkgs.p7zip
