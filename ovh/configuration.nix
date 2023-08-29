@@ -4,7 +4,7 @@
     ../common/configuration.nix
     (fetchTarball {
       url = "https://github.com/msteen/nixos-vscode-server/tarball/master";
-      sha256 = "1qga1cmpavyw90xap5kfz8i6yz85b0blkkwvl00sbaxqcgib2rvv";
+      sha256 = "0sz8njfxn5bw89n6xhlzsbxkafb6qmnszj4qxy2w0hw2mgmjp829";
     })
   ];
 
@@ -109,6 +109,11 @@
           # Alireza
           publicKey = "Rym5loWDOphxu6nRduUqbrTNdlITvESf3f+tL+SfQCY=";
           allowedIPs = [ "10.0.0.7/32" ];
+        }
+        {
+          # ActiGraph
+          publicKey = "Uj3oX4IhtV/sdICjwBZeMb8FRgdox3d3qAyvghU+/AY=";
+          allowedIPs = [ "10.0.0.8/32" ];
         }
       ];
     };
